@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-container {
+  width: 80%;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(50px);
+  box-shadow: 
+  0 15px 30px rgba(0, 0, 0, 0.5),
+  0 5px 15px rgba(0, 0, 0, 0.4),
+  inset 0 -3px 5px rgba(0, 0, 0, 0.2);  border-radius: 10px;
+  flex-grow: 1;
+  overflow-x: auto;
+}
+
+.cart-container h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.cart-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.cart-container th, 
+.cart-container td {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.cart-container th {
+  background-color: rgba(209, 209, 209, 0.329);
+  font-weight: bold;
+}
+
+.cart-container .cart-item {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.cart-container .cart-item-image {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.cart-container .quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: none;
+  width: 100px;
+  margin: auto;
+}
+
+.cart-container .quantity-input {
+  background-color: transparent;
+  text-align: center;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.cart-container .quantity-input:focus {
+  background-color: rgba(214, 214, 214, 0.6);
+}
+
+.cart-container input[type="number"]::-webkit-outer-spin-button,
+.cart-container input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cart-container .quantity-selector button {
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.cart-container .quantity-selector button:hover {
+  background-color: #ddd;
+}
+
+.cart-container .quantity-selector input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+}
+
+.cart-container .delete-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.cart-container .delete-btn:hover {
+  color: red;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.cart-container .buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.cart-container .checkout-btn {
+  width: auto;
+  margin-left: auto;
+  min-width: 190px;
+}
+
+#back-to-shop-btn {
+  flex: 0 1 auto;
+  margin-left: auto;
+  background: linear-gradient(45deg, #ffcc00, #ffd700, #daa520, #b8860b, #ffcc00);
+  color: black;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 2px 5px 10px rgba(218, 165, 32, .5);
+  transition: transform 0.02s ease, box-shadow 0.05 ease;
+}
+
+#back-to-shop-btn:hover {
+  background: linear-gradient(45deg, #ffdb58, #ffd700, #ffc107, #b8860b, #ffdb58);
+  box-shadow: 1px 5px 16px rgba(255, 215, 0, .6);
+}
+
+#back-to-shop-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(255, 215, 0, .4);
+}
+
+@media (max-width: 768px) {
+  .cart-container {
+      width: 95%;
+      padding: 15px;
+  }
+
+  table {
+      display: block;
+      overflow-x: auto;
+  }
+
+  th, td {
+      padding: 10px;
+      font-size: 14px;
+  }
+
+  .quantity-selector {
+      width: 80px;
+  }
+
+  .checkout-btn, #back-to-shop-btn {
+      width: 100%;
+      padding: 12px;
+      margin: 5px;
+  }
+
+  h1 {
+      font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-container table th, 
+  .cart-container table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .cart-container .checkout-btn, 
+  #back-to-shop-btn {
+    font-size: 0.85rem;
+  }
+  
+  .cart-container h1 {
+    font-size: 20px;
+  }
+}

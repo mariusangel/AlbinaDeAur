@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "name": "Miere de salcam-1000g",
+    "category": "Miere",
+    "tag": "Salcam",
+    "description": "Miere naturala de salcam, 100% pura din stup",
+    "detailedDescription": [
+      {
+        "text": "Mierea noastră de salcam este recoltată din stupinetele situate în zone nepoluate. Are o culoare aurie deschisă și o aromă delicată, perfectă pentru a îndulci ceaiul sau prăjiturile. Produs 100% natural, fără adaosuri.",
+        "image": "Thumbnail-Images/DescriereSalcam/floare de salcam.jpg"
+      },
+      {
+        "text": "Mierea de salcam este cunoscută pentru proprietățile sale antioxidante și antiinflamatoare. Este ideală pentru consumul zilnic, oferind o sursă naturală de energie și ajutând la întărirea sistemului imunitar.",
+        "image": "Thumbnail-Images/DescriereSalcam/borcaneSalcam.jpg"
+      },
+      {
+        "text": "Mierea de salcam este cunoscută pentru proprietățile sale antioxidante și antiinflamatoare. Este ideală pentru consumul zilnic, oferind o sursă naturală de energie și ajutând la întărirea sistemului imunitar.",
+        "image": "Thumbnail-Images/DescriereSalcam/albineIntraInStup.png"
+      }
+    ],
+    "specifications": {
+      "Gramaj": "1000g",
+      "Origine": "România",
+      "Certificare": "Organic",
+      "Unitate de vânzare": "Borcan",
+      "Termen de valabilitate": "2 ani"
+    },
+    "nutritionalValues": {
+      "Valoare energetică": "304 kcal",
+      "Glucide": "82g",
+      "Zaharuri": "82g",
+      "Proteine": "0.3g",
+      "Grăsimi": "0g",
+      "Vitamine": "B2, B6, C",
+      "Minerale": "Calciu, Fier, Magneziu"
+    },
+    "image": "Thumbnail-Images/edesia.ro-miere-de-albine-flori-salcam-borcan-980g.png",
+    "stock": 0,
+    "price": "40 RON"
+  },
+  
+  {
+    "id": 2,
+    "name": "Miere de Tei",
+    "category": "Miere",
+    "tag": "Tei",
+    "description": "Miere de tei, cu aromă intensă și beneficii pentru sănătate.",
+    "detailedDescription": [
+      {
+        "text": "Mierea noastră de salcam este recoltată din stupinetele situate în zone nepoluate. Are o culoare aurie deschisă și o aromă delicată, perfectă pentru a îndulci ceaiul sau prăjiturile. Produs 100% natural, fără adaosuri.",
+        "image": "Thumbnail-Images/floare de salcam.jpg"
+      },
+      {
+        "text": "Mierea de salcam este cunoscută pentru proprietățile sale antioxidante și antiinflamatoare. Este ideală pentru consumul zilnic, oferind o sursă naturală de energie și ajutând la întărirea sistemului imunitar.",
+        "image": ""
+      }
+   ],    
+    "specifications": {
+      "gramaj": "1000g",
+      "origine": "România",
+      "certificare": "Organic",
+      "sale-unit": "Borcan"
+    },
+    "nutritionalValues": {
+      "calorii": "304 kcal",
+      "glucide": "82g",
+      "zaharuri": "82g",
+      "proteine": "0.3g",
+      "grasimi": "0g",
+      "vitamine": "B2, B6, C",
+      "minerale": "Calciu, Fier, Magneziu"
+    },
+    "image": "Thumbnail-Images/edesia.ro-miere-de-albine-flori-tei-borcan-980g.png",
+    "stock": 0,
+    "price": "20 RON"
+  },
+
+  {
+    "id": 3,
+    "name": "Miere de Tei",
+    "category": "Miere",
+    "tag": "Tei",
+    "description": "Miere de tei, cu aromă intensă și beneficii pentru sănătate.",
+    "detailedDescription": [
+      {
+        "text": "Mierea noastră de salcam este recoltată din stupinetele situate în zone nepoluate. Are o culoare aurie deschisă și o aromă delicată, perfectă pentru a îndulci ceaiul sau prăjiturile. Produs 100% natural, fără adaosuri.",
+        "image": "Thumbnail-Images/floare de salcam.jpg"
+      },
+      {
+        "text": "Mierea de salcam este cunoscută pentru proprietățile sale antioxidante și antiinflamatoare. Este ideală pentru consumul zilnic, oferind o sursă naturală de energie și ajutând la întărirea sistemului imunitar.",
+        "image": ""
+      }
+   ],    
+    "specifications": {
+      "gramaj": "1000g",
+      "origine": "România",
+      "certificare": "Organic",
+      "sale-unit": "Borcan"
+    },
+    "nutritionalValues": {
+      "calorii": "304 kcal",
+      "glucide": "82g",
+      "zaharuri": "82g",
+      "proteine": "0.3g",
+      "grasimi": "0g",
+      "vitamine": "B2, B6, C",
+      "minerale": "Calciu, Fier, Magneziu"
+    },
+    "image": "Thumbnail-Images/edesia.ro-miere-de-albine-flori-tei-borcan-980g.png",
+    "stock": 10,
+    "price": "20 RON"
+  },
+
+  {
+    "id": 4,
+    "name": "Miere de Tei",
+    "category": "Miere",
+    "tag": "Tei",
+    "description": "Miere de tei, cu aromă intensă și beneficii pentru sănătate.",
+    "detailedDescription": [
+      {
+        "text": "Mierea noastră de salcam este recoltată din stupinetele situate în zone nepoluate. Are o culoare aurie deschisă și o aromă delicată, perfectă pentru a îndulci ceaiul sau prăjiturile. Produs 100% natural, fără adaosuri.",
+        "image": "Thumbnail-Images/floare de salcam.jpg"
+      },
+      {
+        "text": "Mierea de salcam este cunoscută pentru proprietățile sale antioxidante și antiinflamatoare. Este ideală pentru consumul zilnic, oferind o sursă naturală de energie și ajutând la întărirea sistemului imunitar.",
+        "image": ""
+      }
+   ],    
+    "specifications": {
+      "gramaj": "1000g",
+      "origine": "România",
+      "certificare": "Organic",
+      "sale-unit": "Borcan"
+    },
+    "nutritionalValues": {
+      "calorii": "304 kcal",
+      "glucide": "82g",
+      "zaharuri": "82g",
+      "proteine": "0.3g",
+      "grasimi": "0g",
+      "vitamine": "B2, B6, C",
+      "minerale": "Calciu, Fier, Magneziu"
+    },
+    "image": "Thumbnail-Images/edesia.ro-miere-de-albine-flori-tei-borcan-980g.png",
+    "stock": 0,
+    "price": "20 RON"
+  },
+
+  {
+    "id": 5,
+    "name": "Miere de Tei",
+    "category": "Miere",
+    "tag": "Tei",
+    "description": "Miere de tei, cu aromă intensă și beneficii pentru sănătate.",
+    "detailedDescription": [
+      {
+        "text": "Mierea noastră de salcam este recoltată din stupinetele situate în zone nepoluate. Are o culoare aurie deschisă și o aromă delicată, perfectă pentru a îndulci ceaiul sau prăjiturile. Produs 100% natural, fără adaosuri.",
+        "image": "Thumbnail-Images/floare de salcam.jpg"
+      },
+      {
+        "text": "Mierea de salcam este cunoscută pentru proprietățile sale antioxidante și antiinflamatoare. Este ideală pentru consumul zilnic, oferind o sursă naturală de energie și ajutând la întărirea sistemului imunitar.",
+        "image": ""
+      }
+   ],    
+    "specifications": {
+      "gramaj": "1000g",
+      "origine": "România",
+      "certificare": "Organic",
+      "sale-unit": "Borcan"
+    },
+    "nutritionalValues": {
+      "calorii": "304 kcal",
+      "glucide": "82g",
+      "zaharuri": "82g",
+      "proteine": "0.3g",
+      "grasimi": "0g",
+      "vitamine": "B2, B6, C",
+      "minerale": "Calciu, Fier, Magneziu"
+    },
+    "image": "Thumbnail-Images/edesia.ro-miere-de-albine-flori-tei-borcan-980g.png",
+    "stock": 0,
+    "price": "20 RON"
+  },
+
+  {
+    "id": 6,
+    "name": "Miere de Tei",
+    "category": "Miere",
+    "tag": "Tei",
+    "description": "Miere de tei, cu aromă intensă și beneficii pentru sănătate.",
+    "detailedDescription": [
+      {
+        "text": "Mierea noastră de salcam este recoltată din stupinetele situate în zone nepoluate. Are o culoare aurie deschisă și o aromă delicată, perfectă pentru a îndulci ceaiul sau prăjiturile. Produs 100% natural, fără adaosuri.",
+        "image": "Thumbnail-Images/floare de salcam.jpg"
+      },
+      {
+        "text": "Mierea de salcam este cunoscută pentru proprietățile sale antioxidante și antiinflamatoare. Este ideală pentru consumul zilnic, oferind o sursă naturală de energie și ajutând la întărirea sistemului imunitar.",
+        "image": ""
+      }
+   ],    
+    "specifications": {
+      "gramaj": "1000g",
+      "origine": "România",
+      "certificare": "Organic",
+      "sale-unit": "Borcan"
+    },
+    "nutritionalValues": {
+      "calorii": "304 kcal",
+      "glucide": "82g",
+      "zaharuri": "82g",
+      "proteine": "0.3g",
+      "grasimi": "0g",
+      "vitamine": "B2, B6, C",
+      "minerale": "Calciu, Fier, Magneziu"
+    },
+    "image": "Thumbnail-Images/edesia.ro-miere-de-albine-flori-tei-borcan-980g.png",
+    "stock": 0,
+    "price": "20 RON"
+  }
+]

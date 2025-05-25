@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AlbinaDeAur - Magazin</title>
+    <link rel="stylesheet" href="/HeadWrapStyles/header.css">
+    <link rel="stylesheet" href="/HeadWrapStyles/wrapper.css">
+    <link rel="stylesheet" href="magazin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+
+    <div class="shop-container">
+      <div class="search-filter-container">
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Cauta produsul dorit..." autocomplete="off">
+          <button id="searchButton"><i class='bx bx-search'></i></button>
+          <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+        <div class="filter-dropdown">
+          <select id="filterSelect">
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="featured">Featured</option>
+            <option value="bestselling">Bestselling</option>
+          </select>
+          <span class="arrow">▼</span>
+        </div>
+      </div>
+
+      <div class="product-grid">
+
+        <div class="product-item" data-name="Miere de salcam" data-price="40" data-featured="true" data-bestselling="false">
+          <img src="Thumbnail-Images/edesia.ro-miere-de-albine-flori-salcam-borcan-980g.png" alt="Produs1">
+          <div class="discount-tag"> 20% OFF</div>
+          <h3>Miere de Salcam</h3>
+          <p></p>
+          <div class="overlay">
+            <button class="add-to-cart">Adauga in Cos</button>
+          </div>
+          <a href="produs.html?id=1" class="view-product"></a>
+        </div>
+
+        <div class="product-item" data-name="Miere de Tei" data-price="35" data-featured="true" data-bestselling="false">
+          <img src="Thumbnail-Images/edesia.ro-miere-de-albine-flori-tei-borcan-980g.png" alt="Produs2">
+          <!-- <div class="discount-tag"> 20% OFF</div> -->
+          <h3>Miere de Tei</h3>
+          <p></p>
+          <div class="overlay">
+            <button class="add-to-cart">Adauga in Cos</button>
+          </div>
+          <a href="produs.html?id=2" class="view-product"></a>
+        </div>
+
+        <div class="product-item" data-name="Miere Poliflora" data-price="30" data-featured="true" data-bestselling="false">
+          <img src="Thumbnail-Images/edesia.ro-miere-de-albine-poliflora-borcan-980g-1-600x600.png" alt="Produs3">
+          <!-- <div class="discount-tag"> 20% OFF</div> -->
+          <h3>Miere Poliflora</h3>
+          <p></p>
+          <div class="overlay">
+            <button class="add-to-cart">Adauga in Cos</button>
+          </div>
+          <a href="produs.html?id=3" class="view-product"></a>
+        </div>
+
+        <div class="product-item" data-name="Miere de rapita" data-price="30" data-featured="true" data-bestselling="false">
+          <img src="Thumbnail-Images/edesia.ro-miere-de-albine-rapita-borcan-980g.png" alt="Produs1">
+          <div class="discount-tag"> 20% OFF</div>
+          <h3>Miere de Rapita</h3>
+          <p></p>
+          <div class="overlay">
+            <button class="add-to-cart">Adauga in Cos</button>
+          </div>
+          <a href="produs.html?id=4" class="view-product"></a>
+        </div>
+
+        <div class="product-item" data-name="Miere de Floarea Soarelui" data-price="30" data-featured="true" data-bestselling="false">
+          <img src="Thumbnail-Images/floare-soarelui.png" alt="Produs1">
+          <!-- <div class="discount-tag"> 20% OFF</div> -->
+          <h3>Miere de Floarea Soarelui</h3>
+          <p></p>
+          <div class="overlay">
+            <button class="add-to-cart">Adauga in Cos</button>
+          </div>
+          <a href="produs.html?id=5" class="view-product"></a>
+        </div>
+      </div>
+
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+      <script type="module" src="../js/main.js"></script>
+      <script type="module" src="../js/cartManager.js"></script>
+      <script type="module" src="magazin.js"></script>
+    </div>
+  </body>
+</html>

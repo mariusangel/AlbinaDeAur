@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cos de cumparaturi</title>
+    <link rel="stylesheet" href="cos.css">
+    <link rel="stylesheet" href="/HeadWrapStyles/header.css">
+    <link rel="stylesheet" href="/HeadWrapStyles/wrapper.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+    <div class="cart-container">
+      <h1>Cosul tau</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>IMAGINE</th>
+            <th>PRODUS</th>
+            <th>PRET</th>
+            <th>CANTITATE</th>
+            <th>TOTAL</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="cart-items"></tbody>
+      </table>
+      <div class="cart-total">
+        <h3>Sub-total: <span id="total-price">0 Ron</span></h3>
+        <div class="buttons">
+          <button class="checkout-btn">Finalizeaza comanda</button>
+          <button id="back-to-shop-btn">Inapoi la Magazin</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="cos.js"></script>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/cartManager.js"></script>
+  </body>
+</html>

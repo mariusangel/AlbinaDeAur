@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <title>AlbinaDeAur</title>
+  <link rel="stylesheet" href="HeadWrapStyles/header.css">
+  <link rel="stylesheet" href="HeadWrapStyles/wrapper.css">
+  <link rel="stylesheet" href="profile.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h1>Bine ai venit în stupul digital!🐝</h1>
+    </div>
+    
+    <div class="profile-content">
+      <div class="profile-card">
+          <div class="profile-avatar">
+              <i class='bx bxs-user-circle'></i>
+          </div>
+          <div class="profile-info">
+              <div class="info-item">
+                  <span class="info-label"><i class='bx bx-user'></i> Nume:</span>
+                  <span id="profile-name" class="info-value">-</span>
+              </div>
+              <div class="info-item">
+                  <span class="info-label"><i class='bx bx-envelope'></i> Email:</span>
+                  <span id="profile-email" class="info-value">-</span>
+              </div>
+              <div class="info-item">
+                  <span class="info-label"><i class='bx bx-calendar'></i> Membru din:</span>
+                  <span id="profile-reg-date" class="info-value">-</span>
+              </div>
+          </div>
+      </div>
+      
+      <div class="profile-actions">
+          <button class="action-btn edit-profile-btn">
+              <i class='bx bx-edit'></i> Editează profil
+          </button>
+          <button class="action-btn order-history-btn">
+              <i class='bx bx-history'></i> Istoric comenzi
+          </button>
+          <button class="action-btn settings-btn">
+              <i class='bx bx-cog'></i> Setări
+          </button>
+      </div>
+    </div>
+
+    <div class="profile-footer">
+      <button class="logout-btn">
+          <i class='bx bx-log-out'></i> Deconectare
+      </button>
+    </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="script.js"></script>
+  <script src="profile.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Detalii produs</title>
+    <link rel="stylesheet" href="/HeadWrapStyles/header.css">
+    <link rel="stylesheet" href="/HeadWrapStyles/wrapper.css">
+    <link rel="stylesheet" href="produs.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+    <main class="product-page">
+      <div class="product-details">
+        <div class="product-image">
+          <img id="product-image" src="" alt="imagine produs">
+        </div>
+        <div class="product-info">
+          <h1 id="product-name">Nume produs</h1>
+          <p id="product-description">Descriere</p>
+          <p id="product-price">Pret:</p>
+          <p id="stock-status"></p>
+
+          <div class="quantity-controls">
+            <label for="quantity-input" id="quantity-label">Alege cantitatea:</label>
+            <div class="quantity-selector">
+              <button id="minus-btn">-</button>
+              <input type="number" id="quantity-input" min="1" value="1">
+              <button id="plus-btn">+</button>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button id="add-to-cart">Adauga in cos</button>
+            <button id="add-to-favorites">
+              <i class='bx bx-heart'></i>
+              <i class='bx bxs-heart'></i>
+            </button>
+          </div>
+
+          <p><strong>Categorie:</strong> <span id="product-category">---</span></p>
+          <p><strong>Tip:</strong> <span id="product-tag">---</span></p>
+        </div>
+      </div>
+
+      <div class="product-tabs">
+        <ul class="tabs">
+          <li data-tab="descriere" class="active">Descriere</li>
+          <li data-tab="specificatii">Specificatii</li>
+          <li data-tab="nutritie">Valori Nutritionale</li>
+          <li data-tab="recenzii">Recenzii</li>
+        </ul>
+  
+        <div class="tab-content-active" id="descriere">
+          <h2>Descriere detaliata produs</h2>
+          <p id="detailed-description"></p>
+          <div class="detailed-description" id="detailed-description"></div>
+        </div>
+
+        <div class="tab-content" id="specificatii">
+          <h2>Specificatii</h2>
+          <div class="specs-grid" id="specs-data"></div>
+        </div>
+
+        <div class="tab-content" id="nutritie">
+          <h2>Valori Nutritionale (per 100g)</h2>
+          <div class="nutrition-grid" id="nutrition-data"></div>
+        </div>
+
+        <div class="tab-content" id="recenzii">
+          <h2>Recenzii</h2>
+        </div>
+      </div>
+
+      <div class="similar-products">
+        <h2>Produse Similare</h2>
+        <div class="slider-container">
+          <button class="slider-arrow prev-arrow" aria-label="Produse anterioare">&#10094;</button>
+          <div class="similar-products-grid" id="similar-products-container"></div>
+          <button class="slider-arrow next-arrow" aria-label="Produse următoare">&#10095;</button>
+        </div>
+      </div>
+  
+      <footer class="footer">
+        <p>&copy; 2025 AlbinaDeAur, Toate drepturile rezervate.</p>
+      </footer>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/product.js"></script>
+  </body>
+</html>

@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url('/Images/large-epic-macro-photography-shot-of-honey-bee-closeup-view-of-working-bees-generative-ai.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.8rem 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(50px);
+  z-index: -1;
+}
+
+.logo-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  pointer-events: none;
+}
+
+.logo img {
+  height: auto;
+  width: 130px;
+  display: block;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}
+
+.navbar a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 2.5rem;
+  position: relative;
+  transition: color 0.3 ease, background 0.3 ease;
+  transition: .3s ease;
+  color: black;
+}
+
+.navbar a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: linear-gradient(90deg, #ffd700, #daa520, #ffd700);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar a:hover { 
+  color: #ffd000;
+}
+
+.navbar a:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.profile-button {
+  position: fixed;
+  font-size: 2rem;
+  right: 20px;
+  z-index: 101;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: color 0.3s ease;
+}
+
+.profile-button:hover {
+  color:#ffd700;
+  transform: scale(1.2);
+}
+
+#check {
+  display: none;
+}
+
+.icons {
+  display: none;
+  padding-right: 20px;
+}
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  margin-left: 0;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cart-icon i {
+  font-size: 26px;
+  color: #000000;
+}
+
+.cart-count {
+  background: #ffd700;
+  color: #000;
+  border-radius: 50px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(50px);
+  border-radius: 10px;
+  padding: 15px;
+  min-width: 300px;
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 1000;
+}
+
+.cart-dropdown.active {
+  display: block;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 10px;
+}
+
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.cart-items-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cart-item-quantity {
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.cart-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.cart-item-link:hover {
+  background-color: rgb(146, 146, 146, 0.2);
+}
+
+/* Sub-total */
+.cart-subtotal-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #ccc;
+}
+
+.cart-subtotal-label {
+  font-weight: bold;
+}
+
+.cart-subtotal-price {
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Buton "Vezi coșul" */
+.view-cart-btn,
+.checkout-btn {
+  flex: 1;
+  background: linear-gradient(45deg, #ffcc00, #ffd700, #daa520, #b8860b, #ffcc00);
+  color: black;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.02s ease, box-shadow 0.05 ease;
+}
+
+/* Efect hover pe butoane */
+.view-cart-btn:hover,
+.checkout-btn:hover {
+  background: linear-gradient(45deg, #ffdb58, #ffd700, #ffc107, #b8860b, #ffdb58);
+  transform: translateY(2px);
+  box-shadow: 0 5px 15px rgba(77, 18, 70, 0.3);
+}
+
+.view-cart-btn:active,
+.checkout-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(255, 215, 0, .4);
+}
+
+/*breakpoints*/
+@media (max-width:992px) {
+  .header {
+    padding: 1.8rem 10%;
+  }
+}
+
+@media (max-width:768px) {
+
+  .header { 
+    height: 87px;
+    padding: 1.8rem 10%;
+  }
+
+  .wrapper {
+    z-index: 103 !important;
+  }
+
+  .icons {
+    display: inline-flex;
+    position: absolute;
+    font-size: 2.2rem;
+    color: black;
+    cursor: pointer;
+    z-index: 102;
+    right: 21%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icons:hover {
+    color:#ffd700;
+  }
+
+  #check:checked~.icons #menu-icon {
+    display: none;
+  }
+
+  .icons #close-icon {
+    display: none;
+  }
+
+  #check:checked~.icons #close-icon {
+    display: block;
+  }
+
+  .navbar {
+    display: block;
+    position: absolute;
+    top:100%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    overflow: hidden;
+    transition: .3s ease;
+  }
+  
+  #check:checked~.navbar {
+    height: auto;
+    padding: .5rem;
+  }
+
+  .navbar a {
+    display: block;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    text-align: center;
+    transform: translateY(-50px);
+    opacity: 0;
+    align-items: center;
+    transition: .3s ease;
+  }
+
+  .navbar a:hover {
+    color: #dbbb01;
+  }
+
+  .navbar a:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+
+  #check:checked~.navbar a {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: calc(.07s * var(--i));
+  }
+
+  .profile-button {
+    position: absolute;
+    right: 5%; 
+    font-size: 2rem;
+    color: black;
+    cursor: pointer;
+    top: 22px;
+    z-index: 102;
+  }
+
+  .cart-icon {
+    position: absolute;
+    right: 9%;
+    z-index: 102;
+  }
+}
