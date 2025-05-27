@@ -1,3 +1,5 @@
+const jwt   = require("jsonwebtoken");
+const User  = require("../models/User");
 // backend/middleware/authMiddleware.js
 const protect = async (req, res, next) => {
   let token;
@@ -28,3 +30,5 @@ const protect = async (req, res, next) => {
     res.status(401).json({ message: "Token invalid!" });
   }
 };
+
+module.exports = { protect };
