@@ -34,6 +34,7 @@ export async function handleAuth(email, password, name = null, isLogin = true) {
 
 // Actualizează UI-ul în funcție de starea de autentificare
 export async function updateAuthUI(wrapper) {
+  if (!wrapper) return;
   const token = localStorage.getItem('authToken');
   const profileButton = document.getElementById('profileButton');
   const profileName = document.getElementById('profileName');

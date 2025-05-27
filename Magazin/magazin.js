@@ -1,3 +1,4 @@
+import { BASE_URL } from './config.js';
 const searchInput = document.querySelector('#searchInput');
 const searchSuggestions = document.querySelector('#searchSuggestions');
 const searchButton = document.getElementById('searchButton');
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function fetchProducts() {
-  const response = await fetch('http://localhost:3000/api/products');
+  const response = await fetch(`${BASE_URL}/api/products`);
   if (!response.ok) throw new Error('Eroare preluare produse');
   return await response.json();
 }
@@ -63,7 +64,10 @@ function renderProducts(products) {
       <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p class="price">${product.price} RON</p>
-      <a href="/product/${product._id}" class="view-product">Vezi produs</a>
+      <div class="buttons">
+        <a href="/product/${product._id}" class="view-product">Vezi produs</a>
+        <button class="add-to-cart">Adauga in cos</button>
+      </div>
     `;
 
     item.addEventListener('click', () => {

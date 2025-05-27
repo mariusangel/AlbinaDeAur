@@ -145,6 +145,8 @@ body {
 }
 
 .cart-dropdown {
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
   top: 100%;
   right: 20px;
@@ -157,12 +159,18 @@ body {
     0 15px 30px rgba(0, 0, 0, 0.5),
     0 5px 15px rgba(0, 0, 0, 0.4),
     inset 0 -3px 5px rgba(0, 0, 0, 0.2);
-  display: none;
+
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  pointer-events: none;
   z-index: 1000;
 }
 
 .cart-dropdown.active {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .cart-item {
@@ -261,6 +269,33 @@ body {
 .checkout-btn:active {
   transform: scale(0.97);
   box-shadow: 0 3px 8px rgba(255, 215, 0, .4);
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 1rem;
+}
+.empty-cart p {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.empty-cart .btn-return-shop {
+  display: inline-block;
+  background: #ffd700;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #000;
+  transition: background 0.2s;
+}
+.empty-cart .btn-return-shop:hover {
+  background: #ffcc00;
+}
+
+.checkout-btn:disabled,
+.view-cart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /*breakpoints*/

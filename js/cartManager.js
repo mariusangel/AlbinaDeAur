@@ -1,4 +1,5 @@
 import { showCartNotification } from "./utils.js";
+import { BASE_URL } from "./config.js";
 
 const CartManager = {
 
@@ -8,7 +9,7 @@ const CartManager = {
       
       if (token) {
         // Utilizator autentificat: adăugare în backend
-        const response = await fetch('http://localhost:3000/api/cart', {
+        const response = await fetch(`${BASE_URL}/api/cart`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -46,7 +47,7 @@ const CartManager = {
   async getCart() {
     if (localStorage.getItem('authToken')) {
       try {
-        const response = await fetch('http://localhost:3000/api/cart', {
+        const response = await fetch(`${BASE_URL}/api/cart`, {
           headers: { 'Authorization': `Bearer ${localStorage.getItem('authToken')}` }
         });
         if (response.ok) {
@@ -72,6 +73,9 @@ const CartManager = {
 
   async updateCartDisplay() {
     try {
+      if (!document.querySelector('.cart-items') || !document.getElementById('total-price')) {
+        return;  // pagină fără tabla coș => nu încercăm să updatăm
+      }
       const cartItems = await this.getCart();
       const cartItemsContainer = document.querySelector('.cart-items');
       const totalPriceElement = document.getElementById('total-price');
@@ -123,7 +127,7 @@ const CartManager = {
   async updateQuantity(productId, newQuantity) {
     if (localStorage.getItem('authToken')) {
       try {
-        const response = await fetch(`http://localhost:3000/api/cart/${productId}`, {
+        const response = await fetch(`${BASE_URL}/api/cart/${productId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -151,7 +155,7 @@ const CartManager = {
   async deleteItem(productId) {
     if (localStorage.getItem('authToken')) {
       try {
-        const response = await fetch(`http://localhost:3000/api/cart/${productId}`, {
+        const response = await fetch(`${BASE_URL}/api/cart/${productId}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('authToken')}`
@@ -185,6 +189,22 @@ const CartManager = {
     }
     localStorage.removeItem('tempCart');
     await this.updateCartDisplay();
+  },
+
+  async createCheckoutSession() {
+    const token = localStorage.getItem('authToken');
+    const res = await fetch(`${BASE_URL}/api/orders/create-checkout-session`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || 'Eroare creare sesiune checkout');
+    }
+    const { url } = await res.json();
+    return url;
   }
 };
 
