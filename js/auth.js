@@ -1,6 +1,6 @@
 import { showError, showCartNotification } from './utils.js';
 
-const API_URL = 'http://localhost:3000/api/auth';
+const API_URL = 'http://localhost:5000/api/auth';
 
 // Funcție universală pentru autentificare/înregistrare
 export async function handleAuth(email, password, name = null, isLogin = true) {
@@ -38,26 +38,45 @@ export async function updateAuthUI(wrapper) {
   const token = localStorage.getItem('authToken');
   const profileButton = document.getElementById('profileButton');
   const profileName = document.getElementById('profileName');
+  const logoutButton = document.getElementById('logoutButton');
 
   try {
-    if (!token) throw new Error('Nu sunteți autentificat');
+    if (!token) {
+      // Stare neautentificat
+      profileButton.innerHTML = `<i class='bx bxs-user'></i>`;
+      profileName.textContent = '';
+      profileButton.onclick = () => wrapper.classList.add('active-popup');
+      if (logoutButton) logoutButton.style.display = 'none'; // Ascunde logout
+      return;
+    }
 
+    // Verificare token
     const response = await fetch(`${API_URL}/verify`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
-
+    
     if (!response.ok) throw new Error('Token invalid');
     
+    // Stare autentificat
     const { user } = await response.json();
     profileButton.innerHTML = `<i class='bx bxs-user-check'></i>`;
     profileName.textContent = user.name;
     profileButton.onclick = () => (window.location.href = '/profile.html');
+    
+    // Afișează butonul de logout
+    if (logoutButton) {
+      logoutButton.style.display = 'block';
+      logoutButton.onclick = () => {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('user');
+        window.location.reload();
+      };
+    }
 
   } catch (error) {
+    console.error('Eroare verificare token:', error);
     localStorage.removeItem('authToken');
-    profileButton.innerHTML = `<i class='bx bxs-user'></i>`;
-    profileName.textContent = '';
-    profileButton.onclick = () => wrapper.classList.add('active-popup');
+    window.location.reload();
   }
 }
 

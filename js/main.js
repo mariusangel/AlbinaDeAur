@@ -2,29 +2,73 @@
 import { updateAuthUI, initAuthForms } from './auth.js';
 import CartManager from './cartManager.js';
 
+let isInitialized = false;
+
 document.addEventListener("DOMContentLoaded", async () => {
-  // ===========================
-  // 1. Autentificare
-  // ===========================
-  initAuthForms();
-  const wrapper = document.querySelector('.wrapper');
-  updateAuthUI(wrapper);
+  if (isInitialized) return;
+  isInitialized = true;
 
   // ===========================
   // 2. Încarcă header.html
   // ===========================
-  try {
-    const headerResp = await fetch('/header.html');
-    if (!headerResp.ok) throw new Error(`HTTP ${headerResp.status}`);
-    const headerHTML = await headerResp.text();
-    document.body.insertAdjacentHTML('afterbegin', headerHTML);
-  } catch (err) {
-    console.error('Eroare la încărcarea header-ului:', err);
+  let headerElementsLoaded = false;
+  const existingHeader = document.querySelector('header.header');
+
+  if (!existingHeader) {
+    try {
+      const headerResp = await fetch('/header.html');
+      if (!headerResp.ok) throw new Error(`HTTP ${headerResp.status}`);
+      const headerHTML = await headerResp.text();
+      document.body.insertAdjacentHTML('afterbegin', headerHTML);
+      headerElementsLoaded = true; // Marchează că header-ul este încărcat
+    } catch (err) {
+      console.error('Eroare la încărcarea header-ului:', err);
+      return;
+    }
   }
+
+  initAuthForms();
+  const wrapper = document.querySelector('.wrapper');
+  if (!wrapper) {
+    console.error('Wrapper nu a fost găsit în DOM!');
+    return;
+  }
+  updateAuthUI(wrapper);
 
   // ===========================
   // 3. Elemente din header (după inserare)
   // ===========================
+
+  if (existingHeader || headerElementsLoaded) {
+    // Selectare elemente DINAMICE după inserare
+    const loginLink = document.querySelector('.login-link');
+    const registerLink = document.querySelector('.register-link');
+    const btnPopup = document.querySelector('#profileButton');
+    const iconClose = document.querySelector('.icon-close');
+
+    // Event listeners pentru formulare
+    registerLink?.addEventListener('click', e => {
+      e.preventDefault();
+      wrapper.classList.add('active');
+    });
+
+    loginLink?.addEventListener('click', e => {
+      e.preventDefault();
+      wrapper.classList.remove('active');
+    });
+
+    btnPopup?.addEventListener('click', e => {
+      e.preventDefault();
+      if (wrapper) { // Verifică existența
+      wrapper.classList.add('active-popup');
+      }
+    });
+
+    iconClose?.addEventListener('click', () => {
+      wrapper.classList.remove('active-popup');
+    });
+  }
+
   const cartIcon = document.querySelector('.cart-icon');
   const cartDropdown = document.querySelector('.cart-dropdown');
   const cartCount = document.querySelector('.cart-count');
@@ -95,56 +139,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   window.updateCartDisplay = CartManager.updateCartDisplay.bind(CartManager);
   window.syncTempCart      = CartManager.syncTempCart.bind(CartManager);
 
-  // ===========================
-  // 7. UI login/register
-  // ===========================
-  const loginLink     = document.querySelector('.login-link');
-  const registerLink  = document.querySelector('.register-link');
-  const btnPopup      = document.querySelector('.profile-button');
-  const iconClose     = document.querySelector('.icon-close');
-
-  registerLink?.addEventListener('click', e => {
-    e.preventDefault();
-    wrapper.classList.add('active');
-  });
-
-  loginLink?.addEventListener('click', e => {
-    e.preventDefault();
-    wrapper.classList.remove('active');
-  });
-
-  btnPopup?.addEventListener('click', e => {
-    e.preventDefault();
-    wrapper.classList.add('active-popup');
-  });
-
-  iconClose?.addEventListener('click', () => {
-    wrapper.classList.remove('active-popup');
-  });
-
-  if (localStorage.getItem('rememberMe') === 'true') {
-    wrapper.classList.add('active-popup');
-  }
 
   // ===========================
   // 8. Delegare: Add to Cart
   // ===========================
   document.querySelectorAll('.add-to-cart').forEach(button => {
-  button.addEventListener('click', e => {
-    e.preventDefault();     // împiedică orice comportament implicit (de ex: <a>)
-    e.stopPropagation();    // oprește propagarea către `.product-item`
+    button.addEventListener('click', e => {
+      e.preventDefault();     // împiedică orice comportament implicit (de ex: <a>)
+      e.stopPropagation();    // oprește propagarea către `.product-item`
 
-    const item = e.target.closest('.product-item');
-    const id   = item.querySelector('.view-product').href.split('id=')[1];
-    const product = {
-      _id:    id,
-      name:   item.dataset.name,
-      price:  item.dataset.price + ' RON',
-      image:  item.querySelector('img').src
-    };
-    window.addToCart(product, 1);
+      const item = e.target.closest('.product-item');
+      const id   = item.querySelector('.view-product').href.split('id=')[1];
+      const product = {
+        _id:    id,
+        name:   item.dataset.name,
+        price:  item.dataset.price + ' RON',
+        image:  item.querySelector('img').src
+      };
+      window.addToCart(product, 1);
+    });
   });
-});
 
   // ===========================
   // 9. Click pe card produs

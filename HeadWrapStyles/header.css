@@ -298,6 +298,18 @@ body {
   cursor: not-allowed;
 }
 
+.logout-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #ff4444;
+}
+
+.logout-button:hover {
+  color: #cc0000;
+}
+
 /*breakpoints*/
 @media (max-width:992px) {
   .header {
