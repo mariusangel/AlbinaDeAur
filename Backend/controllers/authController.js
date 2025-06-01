@@ -6,8 +6,10 @@ const bcrypt = require('bcryptjs');
 //Inregistrare
 exports.registerUser = async (req, res) => {
   try {
-    console.log("[REGISTER] Date primite:", req.body); // Log 1
+    console.log("[REGISTER] Date primite:", req.body);
     const { name, email, password } = req.body;
+    // Normalize email
+    const normalizedEmail = email.toLowerCase().trim();
 
     const userExists = await User.findOne({ email: normalizedEmail });
     if (userExists) {

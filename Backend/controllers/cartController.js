@@ -1,5 +1,6 @@
 const Cart = require("../models/Cart");
 const Product = require("../models/Product");
+const mongoose = require("mongoose");
 
 // Obține coșul
 exports.getCart = async (req, res) => {
@@ -14,22 +15,43 @@ exports.getCart = async (req, res) => {
 // Adaugă în coș
 exports.addToCart = async (req, res) => {
   try {
+    console.log("Cerere addToCart:", {
+      user: req.user._id,
+      body: req.body
+    });
     const { productId, quantity } = req.body;
     const userId = req.user._id;
 
+    // Verifică dacă ID-ul este valid
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      return res.status(400).json({ 
+        message: "ID produs invalid",
+        receivedId: productId
+      });
+    }
+
     const product = await Product.findById(productId);
     if (!product) {
-      return res.status(404).json({ message: "Produsul nu există" });
+      return res.status(404).json({ 
+        message: "Produsul nu există",
+        productId 
+      });
     }
+
+    // Logging pentru depanare
+    console.log(`Adăugare în coș: [User: ${userId}] [Produs: ${productId}] [Cantitate: ${quantity}]`);
 
     let cart = await Cart.findOne({ user: userId });
     if (!cart) {
       cart = new Cart({ user: userId, items: [] });
     }
 
-    const existingItem = cart.items.find((item) => item.product.toString() === productId);
-    if (existingItem) {
-      existingItem.quantity += quantity;
+    const existingItemIndex = cart.items.findIndex(
+      item => item.product.toString() === productId
+    );
+
+    if (existingItemIndex >= 0) {
+      cart.items[existingItemIndex].quantity += quantity;
     } else {
       cart.items.push({ product: productId, quantity });
     }
@@ -37,7 +59,12 @@ exports.addToCart = async (req, res) => {
     await cart.save();
     res.status(200).json(cart);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Eroare gravă în addToCart:", error);
+    res.status(500).json({ 
+      message: "Eroare internă a serverului",
+      error: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
   }
 };
 
