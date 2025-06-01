@@ -2,6 +2,15 @@
 import { updateAuthUI, initAuthForms } from './auth.js';
 import CartManager from './cartManager.js';
 
+const updateCartCounter = async () => {
+  const cartCount = document.querySelector('.cart-count');
+  if (!cartCount) return;
+  
+  const items = await CartManager.getCart();
+  const totalCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  cartCount.textContent = totalCount;
+};
+
 let isInitialized = false;
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -112,6 +121,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     checkoutBtn.disabled = items.length === 0;
     viewCartBtn.disabled = items.length === 0;
+    
+    // Actualizează counter-ul global
+    await updateCartCounter();
   }
 
   // ===========================
@@ -143,7 +155,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ===========================
   // 8. Delegare: Add to Cart
   // ===========================
-  document.querySelectorAll('.add-to-cart').forEach(button => {
+  /*document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', e => {
       e.preventDefault();     // împiedică orice comportament implicit (de ex: <a>)
       e.stopPropagation();    // oprește propagarea către `.product-item`
@@ -158,13 +170,49 @@ document.addEventListener("DOMContentLoaded", async () => {
       };
       window.addToCart(product, 1);
     });
+  });*/
+  // ===========================
+// 8. Delegare: Add to Cart
+// ===========================
+  document.addEventListener('click', e => {
+    const addToCartBtn = e.target.closest('.add-to-cart');
+    if (addToCartBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Verifică dacă butonul este dezactivat
+      if (addToCartBtn.disabled) {
+        showCartNotification('Produsul nu este în stoc', 'error');
+        return;
+      }
+
+      const item = addToCartBtn.closest('.product-item');
+      const productId = item.dataset.id;
+      const stock = parseInt(item.dataset.stock, 10);
+
+      // Verifică stocul înainte de adăugare
+      if (stock <= 0) {
+        showCartNotification('Produsul nu este în stoc', 'error');
+        return;
+      }
+
+      const product = {
+        _id: item.dataset.id,
+        name: item.dataset.name,
+        price: item.dataset.price + ' RON',
+        image: item.querySelector('img')?.src
+      };
+      window.addToCart(product, 1);
+    }
   });
+
 
   // ===========================
   // 9. Click pe card produs
   // ===========================
   document.querySelectorAll('.product-card, .product-item').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('.add-to-cart')) return; // Ignoră dacă s-a dat click pe butonul Add to Cart
       const href = card.querySelector('.view-product')?.href;
       if (href) window.location.href = href;
     });
@@ -175,4 +223,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ===========================
   await CartManager.syncTempCart();
   await CartManager.updateCartDisplay();
+  await updateCartCounter(); // Actualizează counter-ul inițial
+
+  // Ascultă evenimente de actualizare coș
+  document.addEventListener('cartUpdated', updateCartCounter);
 });

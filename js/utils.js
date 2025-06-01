@@ -13,16 +13,24 @@ export function showError(message) {
 
 // Funcție pentru afișare notificare
 export function showCartNotification(message, type = 'success') {
+  // Creează elementul notificare
   const notification = document.createElement('div');
   notification.className = `cart-notification ${type}`;
-  notification.innerHTML = `
-    <i class='bx ${type === 'success' ? 'bxs-check-circle' : 'bxs-error-alt'}'></i>
-    <span>${message}</span>
-  `;
+  notification.textContent = message;
+  
+  // Adaugă în DOM
   document.body.appendChild(notification);
   
+  // Animatie intrare
   setTimeout(() => {
-    notification.classList.add('fade-out');
-    setTimeout(() => notification.remove(), 500);
-  }, 2000);
+    notification.classList.add('show');
+  }, 10);
+  
+  // Șterge după 3 secunde
+  setTimeout(() => {
+    notification.classList.remove('show');
+    setTimeout(() => {
+      notification.remove();
+    }, 300);
+  }, 3000);
 }

@@ -1,13 +1,11 @@
 <!-- profile.html -->
-<div class="profile-container">
+<div id="profileLoader" class="loader">Se încarcă profilul...</div>
+<div class="profile-container" style="display:none;">
   <h2>Bun venit, <span id="profileName"></span>!</h2>
   <p>Email: <span id="profileEmail"></span></p>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    document.getElementById('profileName').textContent = user?.name || 'Utilizator';
-    document.getElementById('profileEmail').textContent = user?.email || '';
-  });
+<script type="module">
+  import { showProfileInfo } from '/js/auth.js';
+  showProfileInfo();
 </script>

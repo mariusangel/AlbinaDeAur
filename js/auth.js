@@ -103,3 +103,9 @@ export function initAuthForms() {
     }
   });
 }
+
+export function showProfileInfo() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  document.getElementById('profileName').textContent = user?.name || 'Utilizator';
+  document.getElementById('profileEmail').textContent = user?.email || '';
+}

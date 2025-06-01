@@ -4,10 +4,38 @@ import { BASE_URL } from "./config.js";
 const CartManager = {
 
   async addToCart(product, quantity = 1) {
+    
     try {
+      console.log("Adding to cart:", {
+        productId: product._id || product.id,
+        productName: product.name,
+        quantity
+      });
+
       const token = localStorage.getItem('authToken');
-      
+      console.log("Auth token:", token); // Verifică dacă token-ul există și este valid
+
+      // Verificare rapidă de stoc în frontend
+      if (product.stock <= 0) {
+        throw new Error('Produsul nu este în stoc');
+      }
+      // Verificare stoc în backend doar pentru utilizatorii autentificați
       if (token) {
+        const stockResponse = await fetch(`${BASE_URL}/api/products/${product._id}/stock`);
+      
+        if (!stockResponse.ok) {
+          // Dacă endpoint-ul nu există, sări peste verificarea stocului
+          if (stockResponse.status === 404) {
+            console.warn('Endpoint de verificare stoc nu există, sărim peste verificare');
+          } else {
+            throw new Error('Eroare la verificarea stocului');
+          }
+        } else {
+          const stockData = await stockResponse.json();
+          if (stockData.stock < quantity) {
+            throw new Error(`Sunt disponibile doar ${stockData.stock} bucăți`);
+          }
+        }
         // Utilizator autentificat: adăugare în backend
         const response = await fetch(`${BASE_URL}/api/cart`, {
           method: 'POST',
@@ -34,10 +62,12 @@ const CartManager = {
           });
         }
         localStorage.setItem('tempCart', JSON.stringify(tempCart));
+        await this.updateCartDisplay();
+        showCartNotification('Produs adăugat în coș!');
       }
-      
-      await this.updateCartDisplay();
-      showCartNotification('Produs adăugat în coș!');
+
+      // Declanșează eveniment de actualizare
+      document.dispatchEvent(new Event('cartUpdated'));
     } catch (error) {
       console.error('Eroare:', error);
       showCartNotification('Eroare la adăugare în coș', 'error');
@@ -45,30 +75,51 @@ const CartManager = {
   },
 
   async getCart() {
+    // Salvează întotdeauna starea coșului în localStorage
+    const saveCartToLocalStorage = (items) => {
+      localStorage.setItem('cartSnapshot', JSON.stringify({
+        items,
+        timestamp: Date.now()
+      }));
+    };
+
     if (localStorage.getItem('authToken')) {
       try {
         const response = await fetch(`${BASE_URL}/api/cart`, {
           headers: { 'Authorization': `Bearer ${localStorage.getItem('authToken')}` }
         });
+        
         if (response.ok) {
-          const cart = await response.json();
-          return cart.items || [];
+          const cartData = await response.json();
+          const items = cartData.items || [];
+          saveCartToLocalStorage(items);
+          return items;
         }
       } catch (error) {
         console.error('Eroare preluare coș:', error);
       }
     }
-    // Dacă nu e autentificat sau apare eroare, folosește tempCart din localStorage
-    const tempCart = JSON.parse(localStorage.getItem('tempCart')) || [];
-    return tempCart.map(item => ({
-      product: {
-        _id: item.id,
-        name: item.name,
-        price: item.price,
-        image: item.image
-      },
-      quantity: item.quantity
-    }));
+    
+    // Încarcă din localStorage dacă există
+    const snapshot = localStorage.getItem('cartSnapshot');
+    if (snapshot) {
+      try {
+        const data = JSON.parse(snapshot);
+        
+        // Verifică dacă snapshot-ul este învechit (mai vechi de 1 oră)
+        if (Date.now() - data.timestamp > 3600000) {
+          localStorage.removeItem('cartSnapshot');
+          return [];
+        }
+        
+        return data.items || [];
+      } catch (e) {
+        console.error('Eroare parsare cartSnapshot:', e);
+        return [];
+      }
+    }
+    
+    return [];
   },
 
   async updateCartDisplay() {
@@ -150,6 +201,7 @@ const CartManager = {
       }
     }
     await this.updateCartDisplay();
+    document.dispatchEvent(new Event('cartUpdated'));
   },
 
   async deleteItem(productId) {
@@ -173,6 +225,7 @@ const CartManager = {
       localStorage.setItem('tempCart', JSON.stringify(tempCart));
     }
     await this.updateCartDisplay();
+    document.dispatchEvent(new Event('cartUpdated'));
   },
 
 
@@ -189,6 +242,7 @@ const CartManager = {
     }
     localStorage.removeItem('tempCart');
     await this.updateCartDisplay();
+    document.dispatchEvent(new Event('cartUpdated'));
   },
 
   async createCheckoutSession() {
